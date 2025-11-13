@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shipping Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 id="title">OKBRICK Shipping Calculator</h1>
+      <div class="controls">
+        <select id="lang" aria-label="Language">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+        </select>
+        <select id="currency" aria-label="Currency">
+          <option value="CNY">CNY</option>
+          <option value="USD">USD</option>
+        </select>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <div class="col">
+          <label id="label-country">目的地国家</label>
+          <input id="countrySearch" placeholder="搜索国家 / Search country" />
+          <select id="country" size="6"></select>
+        </div>
+
+        <div class="col">
+          <label id="label-method">物流方式</label>
+          <select id="method"></select>
+
+          <label id="label-weight">重量</label>
+          <div class="inline">
+            <input id="weight" type="number" min="1" value="1000" />
+            <select id="unit"><option value="g">g</option><option value="kg">kg</option></select>
+          </div>
+
+          <div class="actions">
+            <button id="calcBtn">计算运费</button>
+            <label class="upload-btn">
+              <input id="fileInput" type="file" accept=".xlsx,.xls" />
+              <span id="uploadLabel">上传费率表</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="note small">
+        数据来源: <code>shipping-rates.xlsx</code>（网页上传可即时替换） · 汇率: 1 USD = <span id="rate">7.2</span> CNY
+      </div>
+
+      <div class="result" id="result">
+        <div id="outText" class="small">请点击「计算运费」查看报价（页面直接显示）。</div>
+      </div>
+    </section>
+
+    <footer class="footer small">
+      Made for OKBRICK · Deploy on Vercel
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="shipping.js"></script>
+</body>
+</html>
